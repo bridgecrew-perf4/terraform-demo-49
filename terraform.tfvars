@@ -1,4 +1,3 @@
-PROFILE=""
-AWS_REGION=""
-cluster_name=""
+region=""
+name=""
 vpc_id=""

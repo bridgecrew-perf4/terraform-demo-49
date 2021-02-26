@@ -1,6 +1,6 @@
 resource "aws_security_group" "default" {
-  name        = "${var.cluster_name}-sg"
-  description = "Security group for Elasticache"
+  name        = "${var.name}-sg"
+  description = var.description
   vpc_id      = var.vpc_id
 
   egress {
@@ -11,7 +11,7 @@ resource "aws_security_group" "default" {
   }
 
   tags = {
-    "Name"      = "${var.cluster_name}-sg"
+    "Name"      = "${var.name}-sg"
   }
 }
 

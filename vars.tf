@@ -1,10 +1,11 @@
-variable "PROFILE" {
+variable "description" {
+	default=""
 }
 
-variable "AWS_REGION" {
+variable "region" {
 }
 
-variable "cluster_name" {
+variable "name" {
 }
 
 variable "vpc_id" {
