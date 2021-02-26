@@ -1,7 +1,3 @@
-variable "description" {
-	default=""
-}
-
 variable "region" {
 }
 
