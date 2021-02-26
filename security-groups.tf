@@ -1,6 +1,6 @@
 resource "aws_security_group" "default" {
   name        = "${var.name}-sg"
-  description = var.description
+  description = "manager by terraform"
   vpc_id      = var.vpc_id
 
   egress {
