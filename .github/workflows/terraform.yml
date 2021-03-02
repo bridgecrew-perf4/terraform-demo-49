@@ -75,7 +75,7 @@ jobs:
     - name: init auth
       #run: echo -e "${{ secrets.TF_API_TOKEN }}" > /tmp/auth
       run: |
-        cat <<EOF > /tmp/auth
+        cat <<EOF > auth
         ${{ secrets.TF_API_TOKEN }}
         EOF 
 
