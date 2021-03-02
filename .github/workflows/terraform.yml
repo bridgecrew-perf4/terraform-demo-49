@@ -91,7 +91,7 @@ jobs:
     - name: Terraform Plan
       run: terraform plan
   
-    - if: ${{ inputs.name }} == "apply" 
+    - if: ${{ on.workflow_dispatch.inputs.name }} == "apply" 
       name: Terraform apply
       run: terraform apply -auto-approve 
 
