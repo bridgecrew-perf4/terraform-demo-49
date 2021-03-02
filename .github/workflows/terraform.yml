@@ -92,11 +92,11 @@ jobs:
       run: terraform plan
   
     - name: Terraform apply
-      if: inputs.name == "apply"
+      if: ${{ inputs.name }} == "apply"
       run: terraform apply -auto-approve 
 
     - name: Terraform destroy
-      if: ${{ name }} == "destroy"
+      if: ${{ inputs.name }} == "destroy"
       run: terraform destroy -auto-approve 
       
       # On push to main, build or change infrastructure according to Terraform configuration files
