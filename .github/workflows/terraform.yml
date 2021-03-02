@@ -72,7 +72,8 @@ jobs:
       uses: actions/checkout@main
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-
+    - name: init auth
+      run: echo ${{ secrets.TF_API_TOKEN }} > /tmp/auth
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
