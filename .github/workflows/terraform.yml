@@ -95,6 +95,7 @@ jobs:
       run: terraform apply -auto-approve 
 
     - name: Terraform destroy
+      if: ${{ description }} == "destroy"
       run: terraform destroy -auto-approve 
       
       # On push to main, build or change infrastructure according to Terraform configuration files
