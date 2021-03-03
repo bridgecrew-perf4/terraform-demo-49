@@ -55,6 +55,16 @@ on:
         default: 'World'
         # Input has to be provided for the workflow to run
         required: true
+      account:
+        description: 'aws account'
+        default: 'aws-rd'
+        required: true 
+      varfilename:
+        description: 'varfile'
+        default: 'test'
+        required: true
+      
+      
 
 jobs:
   terraform:
@@ -79,6 +89,10 @@ jobs:
         ${{ secrets.TF_API_TOKEN }}
         EOF 
 
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init varfile
+      run: echo ${{ github.event.inputs.varfilename }}
+      
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
