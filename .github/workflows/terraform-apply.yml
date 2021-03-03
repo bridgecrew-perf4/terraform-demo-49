@@ -95,7 +95,7 @@ jobs:
       run: echo "${{ github.event.inputs.name }}"
       
     - name: Terraform apply
-      if: ${{ github.event.inputs.name }} == 'apply'
+      if: ${{ github.event.inputs.name == 'apply' }} 
       run: terraform apply -auto-approve 
 
 
