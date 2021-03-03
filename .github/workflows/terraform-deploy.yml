@@ -121,7 +121,7 @@ jobs:
       if: ${{ github.event.inputs.ops_type == 'apply' }} 
       run: terraform apply -auto-approve 
 
-    - name: Terraform destory
+    - name: Terraform destroy
       if: ${{ github.event.inputs.ops_type == 'destroy' }} 
       run: terraform destroy -auto-approve 
 
