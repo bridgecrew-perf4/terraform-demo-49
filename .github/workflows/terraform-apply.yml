@@ -91,6 +91,9 @@ jobs:
     - name: Terraform Plan
       run: terraform plan
   
+    - name: get option name 
+      run: echo "${{ github.event.inputs.name }}"
+      
     - name: Terraform apply
       if: ${{ github.event.inputs.name }} == "apply"
       run: terraform apply -auto-approve 
