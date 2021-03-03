@@ -98,13 +98,14 @@ jobs:
     #  run: echo ${{ github.event.inputs.varfilename }}
       
     - name: Terraform Init varfile path 
-      run: scp -r varfiles/${{ github.event.inputs.account }}/${{ github.event.inputs.varfilename }}.json  terraform.tfvars.json
+      run: scp -r varfiles/${{ github.event.inputs.account }}/${{ github.event.inputs.varfilename }}.json  terraform.tfvars
       
     - name: Terraform update backend path 
       run: |
         sed -i "s/{{account}}/${{ github.event.inputs.account }}/g" backend.tf 
         sed -i "s/{{region}}/${{ github.event.inputs.region }}/g" backend.tf 
         sed -i "s/{{name}}/${{ github.event.inputs.name }}/g" backend.tf 
+        name=`cat terraform.tfvars  | grep 'name' | awk -F "=" '{print $2}'`
         cat backend.tf 
       
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
