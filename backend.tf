@@ -14,7 +14,7 @@ terraform {
     shared_credentials_file = "auth"
     profile                 = "s3_dynamodb"
     bucket         = "terraform-up-and-running-state-eager-1"
-    key            = "[[s3_path]]"
+    key            = "{{s3_path}}"
     region         = "us-east-2"
     dynamodb_table = "terraform-up-and-running-locks_eager"
     encrypt        = true
