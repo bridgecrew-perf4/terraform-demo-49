@@ -104,8 +104,8 @@ jobs:
       run: |
         sed -i "s/{{account}}/${{ github.event.inputs.account }}/g" backend.tf 
         sed -i "s/{{region}}/${{ github.event.inputs.region }}/g" backend.tf 
-        sed -i "s/{{name}}/${{ github.event.inputs.name }}/g" backend.tf 
         name=`cat terraform.tfvars  | grep 'name' | awk -F "=" '{print $2}'`
+        sed -i "s/{{name}}/${{ github.event.inputs.name }}/g" backend.tf
         cat backend.tf 
       
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
