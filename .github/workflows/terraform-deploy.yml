@@ -49,12 +49,20 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
+      ops_type:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Person to greet'
         # Default value if no value is explicitly provided
         default: 'World'
         # Input has to be provided for the workflow to run
+        required: true
+      account:
+        description: 'aws account'
+        default: 'aws-rd'
+        required: true 
+      varfilename:
+        description: 'varfile'
+        default: 'test'
         required: true
 
 jobs:
@@ -79,6 +87,20 @@ jobs:
         cat <<EOF > auth
         ${{ secrets.TF_API_TOKEN }}
         EOF 
+
+    - name: Terraform Init varfile path 
+      run: scp -r varfiles/${{ github.event.inputs.account }}/${{ github.event.inputs.varfilename }}.conf  terraform.tfvars
+      
+    - name: Terraform update backend path 
+      run: |
+        sed -i "s/{{account}}/${{ github.event.inputs.account }}/g" backend.tf ;
+        sed -i "s/{{region}}/${{ github.event.inputs.varfilename }}/g" backend.tf ;
+        name=`cat terraform.tfvars  | grep 'name' | awk -F "=" '{print $2}'`;
+        scgname=`echo $name  | sed 's/\"//g'`
+        sed -i "s/{{name}}/$scgname/g" backend.tf;
+        echo $scgname;
+        cat backend.tf ;
+        
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
@@ -92,15 +114,15 @@ jobs:
       run: terraform plan
   
     - name: get option name 
-      if: ${{ github.event.inputs.name == 'plan' }} 
+      if: ${{ github.event.inputs.ops_type == 'plan' }} 
       run: echo "${{ github.event.inputs.name }}"
       
     - name: Terraform apply
-      if: ${{ github.event.inputs.name == 'apply' }} 
+      if: ${{ github.event.inputs.ops_type == 'apply' }} 
       run: terraform apply -auto-approve 
 
     - name: Terraform destory
-      if: ${{ github.event.inputs.name == 'destroy' }} 
+      if: ${{ github.event.inputs.ops_type == 'destroy' }} 
       run: terraform apply -auto-approve 
 
       
