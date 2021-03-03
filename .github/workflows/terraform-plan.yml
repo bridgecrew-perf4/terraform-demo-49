@@ -98,7 +98,7 @@ jobs:
     #  run: echo ${{ github.event.inputs.varfilename }}
       
     - name: Terraform Init varfile path 
-      run: scp -r varfiles/${{ github.event.inputs.account }}/${{ github.event.inputs.varfilename }}.json  terraform.tfvars
+      run: scp -r varfiles/${{ github.event.inputs.account }}/${{ github.event.inputs.varfilename }}.conf  terraform.tfvars
       
     - name: Terraform update backend path 
       run: |
