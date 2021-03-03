@@ -1,7 +1,7 @@
 provider "aws" {
   shared_credentials_file = "auth"
   profile                 = "aws-prod"
-  region                  = "ap-northeast-1"
+  region                  = var.region
 }
 
 
