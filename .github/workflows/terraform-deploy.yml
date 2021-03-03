@@ -100,7 +100,7 @@ jobs:
       run: terraform apply -auto-approve 
 
     - name: Terraform destory
-      if: ${{ github.event.inputs.name == 'destory' }} 
+      if: ${{ github.event.inputs.name == 'destroy' }} 
       run: terraform apply -auto-approve 
 
       
