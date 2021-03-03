@@ -43,7 +43,7 @@
 #       with:
 #         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-name: 'Terraform-apply'
+name: 'Terraform-deploy'
 
 on:
   workflow_dispatch:
@@ -92,12 +92,16 @@ jobs:
       run: terraform plan
   
     - name: get option name 
+      if: ${{ github.event.inputs.name == 'plan' }} 
       run: echo "${{ github.event.inputs.name }}"
       
     - name: Terraform apply
       if: ${{ github.event.inputs.name == 'apply' }} 
       run: terraform apply -auto-approve 
 
+    - name: Terraform destory
+      if: ${{ github.event.inputs.name == 'destory' }} 
+      run: terraform apply -auto-approve 
 
       
       # On push to main, build or change infrastructure according to Terraform configuration files
