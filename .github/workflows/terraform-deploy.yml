@@ -51,9 +51,9 @@ on:
     inputs:
       ops_type:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'ops type [apply,destroy]'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: 'plan'
         # Input has to be provided for the workflow to run
         required: true
       account:
@@ -61,7 +61,7 @@ on:
         default: 'aws-rd'
         required: true 
       varfilename:
-        description: 'varfile'
+        description: 'varfile region'
         default: 'test'
         required: true
 
