@@ -90,15 +90,15 @@ jobs:
         EOF 
     
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init account name 
-      run: echo ${{ github.event.inputs.account }}
+    #- name: Terraform Init account name 
+    #  run: echo ${{ github.event.inputs.account }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init varfile name 
-      run: echo ${{ github.event.inputs.varfilename }}
+    #- name: Terraform Init varfile name 
+    #  run: echo ${{ github.event.inputs.varfilename }}
       
     - name: Terraform Init varfile path 
-      run: echo  "varfiles/${{ github.event.inputs.account }}/${{ github.event.inputs.varfilename }}"
+      run: cat  varfiles/${{ github.event.inputs.account }}/${{ github.event.inputs.varfilename }}.json 
       
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
