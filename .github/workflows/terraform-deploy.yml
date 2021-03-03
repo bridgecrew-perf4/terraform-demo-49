@@ -123,7 +123,7 @@ jobs:
 
     - name: Terraform destory
       if: ${{ github.event.inputs.ops_type == 'destroy' }} 
-      run: terraform apply -auto-approve 
+      run: terraform destroy -auto-approve 
 
       
       # On push to main, build or change infrastructure according to Terraform configuration files
