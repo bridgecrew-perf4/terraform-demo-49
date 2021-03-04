@@ -70,6 +70,10 @@ jobs:
         shell: bash
 
     steps:
+    - uses: actions/labeler@v2
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@main
