@@ -76,10 +76,13 @@ jobs:
         shell: bash
 
     steps:
+    - uses: actions/labeler@v2
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@main
-
+      
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: init auth
       #run: echo -e "${{ secrets.TF_API_TOKEN }}" > /tmp/auth
